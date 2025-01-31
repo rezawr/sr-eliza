@@ -39,6 +39,9 @@ export async function normalizeCharacter(
         const normalizedPlugins = await Promise.all(
             character.plugins.map(normalizePlugin)
         );
+        console.log("==================================================================================")
+        console.log(normalizedPlugins)
+        console.log("==================================================================================")
         const validPlugins = normalizedPlugins.filter(
             (plugin): plugin is Plugin => plugin !== undefined
         );
