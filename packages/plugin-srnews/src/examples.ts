@@ -5,14 +5,32 @@ export const getNewsExamples: ActionExample[][] = [
     {
       user: "{{user1}}",
       content: {
-        text: "Bagaimana perkembangan ekonomi Indonesia hari ini?",
+        text: "Berikan saya berita terbaru hari ini!",
       },
     },
     {
       user: "{{agent}}",
       content: {
-        text: "Saya akan mengambil berita terbaru tentang ekonomi Indonesia.",
-        action: "SRNEWS_GET_ALL_NEWS",
+        text: "Saya akan mengambil berita terbaru hari ini.",
+        action: "SRNEWS_SUMMARY_NEWS",
+      },
+    }
+  ]
+];
+
+export const getNewsByCategoryExamples: ActionExample[][] = [
+  [
+    {
+      user: "{{user1}}",
+      content: {
+        text: "Bagaimana perkembangan <category> Indonesia hari ini?",
+      },
+    },
+    {
+      user: "{{agent}}",
+      content: {
+        text: "Saya akan mengambil berita terbaru tentang <category> Indonesia.",
+        action: "SRNEWS_SUMMARY_NEWS",
       },
     }
   ],
@@ -20,14 +38,14 @@ export const getNewsExamples: ActionExample[][] = [
     {
         user: "{{user1}}",
         content: {
-          text: "Berita terbaru dari Bursa Efek Indonesia apa hari ini?",
+          text: "Berita terbaru dari <category> apa hari ini?",
         },
     },
     {
       user: "{{agent}}",
       content: {
-        text: "Saya akan mengambil berita terbaru tentang Bursa Efek Indonesia.",
-        action: "SRNEWS_GET_ALL_NEWS",
+        text: "Saya akan mengambil berita terbaru tentang <category>.",
+        action: "SRNEWS_SUMMARY_NEWS",
       },
     }
   ],
@@ -35,15 +53,15 @@ export const getNewsExamples: ActionExample[][] = [
     {
       user: "{{user1}}",
       content: {
-        text: "Apa saja aksi korporasi yang dilakukan oleh perusahaan di Indonesia baru-baru ini?",
+        text: "Apa saja <category> yang dilakukan oleh perusahaan di Indonesia baru-baru ini?",
       },
     },
     {
       user: "{{agent}}",
       content: {
-        text: "Saya akan mengambil berita terbaru tentang aksi korporasi di Indonesia.",
-        action: "SRNEWS_GET_ALL_NEWS",
+        text: "Saya akan mengambil berita terbaru tentang <category> di Indonesia.",
+        action: "SRNEWS_SUMMARY_NEWS",
       },
     }
   ],
-];
+]

@@ -24,10 +24,30 @@ export const srnewsService = (mongoDbUri: string, database: string) => {
     const client = await _connectDb(mongoDbUri, database);
     const collection = client.collection<NewsDocument>("news");
 
-    const result: NewsDocument[] = await collection.find().toArray();
+    const result: NewsDocument[] = await collection.find().sort({ "source.date": -1 }).toArray();
 
     return result
   }
 
-  return { getNews }
+  const getNewsByCategory = async (category: string): Promise<NewsDocument[]> => {
+    if (!mongoDbUri || !database) {
+      throw new Error("Invalid Parameter")
+    }
+
+    const client = await _connectDb(mongoDbUri, database);
+    const collection = client.collection<NewsDocument>("");
+
+    const result: NewsDocument[] =  await collection.find({
+      "source.category": {
+        $regex: category,
+        $options: "i"
+      }
+    })
+    .sort({ "source.date": -1 })
+    .toArray();
+
+    return result;
+  }
+
+  return { getNews, getNewsByCategory }
 }

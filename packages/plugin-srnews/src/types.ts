@@ -1,4 +1,5 @@
 import { ObjectId } from "mongodb"
+import { z } from "zod";
 
 export interface Article {
   title: string;
@@ -7,6 +8,8 @@ export interface Article {
 
 export interface Source {
   url: string;
+  date: Date;
+  category: string;
   name: string;
 }
 
@@ -15,3 +18,7 @@ export interface NewsDocument {
   source: Source,
   article: Article
 }
+
+export const CategorySchema = z.object({
+  text: z.string().describe("The text of the tweet"),
+});
